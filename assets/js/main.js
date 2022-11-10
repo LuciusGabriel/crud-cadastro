@@ -21,7 +21,15 @@ const getLocalStorage = ()=> JSON.parse(localStorage.getItem('db_client')) ?? []
 const setLocalStorage = (dbClient)=> localStorage.setItem("db_client", //O metodo .setItem envia o dado para o LocalStorage, recebe dois parametros (chave/Key, valor/Value)
 JSON.stringify(dbClient)) //O método JSON.stringify transforma um Objeto em String
 
+//UPDATE
+const updateClient = (index, client)=>{
+    const dbClient = readClient() // Vai ler o banco de dados
+    dbClient[index] = client //Busca no Banco de dados, conforme índice informa e novo cliente
+    setLocalStorage(dbClient) //Envia para o Banco de Dados
+}
 
+//READ
+const readClient = ()=> getLocalStorage()
 
 //CREATE - CRIAR O LOCALSTORAGE PARA ARMAZENAR OS DADOS
 const createClient = (client)=>{
